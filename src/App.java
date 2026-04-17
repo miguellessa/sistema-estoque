@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,14 +10,15 @@ public class App {
 
         int menu = 0;
 
-        while (menu != 5) {
+        while (menu != 6) {
 
             System.out.println("=======SISTEMA DE ESTOQUE INTELIGENTE========");
-            System.out.println("1. Cadastrar Alimento");
-            System.out.println("2. Cadastrar Eletronico");
-            System.out.println("3. Listar Produtos");
-            System.out.println("4. Mostrar Preco Final");
-            System.out.println("5. Sair");
+            System.out.println("[1] - Cadastrar Alimento");
+            System.out.println("[2] - Cadastrar Eletronico");
+            System.out.println("[3] - Listar Produtos");
+            System.out.println("[4] - Mostrar Preco Final");
+            System.out.println("[5] - Excluir Produto");
+            System.out.println("[6] - Sair");
 
             menu = sc.nextInt();
             sc.nextLine();
@@ -35,6 +37,9 @@ public class App {
                     EstoqueService.mostrarPrecoFinal(produtos);
                     break;
                 case 5:
+                    EstoqueService.excluirProduto(sc, produtos);
+                    break;
+                case 6:
                     System.out.println("Encerrando o sistema...");
                     break;
                 default:

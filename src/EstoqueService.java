@@ -53,4 +53,18 @@ public class EstoqueService {
         produtos.add(e1);
         System.out.println("Eletronico cadastrado com sucesso!");
     }
+
+    public static void excluirProduto(Scanner sc, ArrayList<Produto> produtos) {
+        System.out.println("Digite o nome do produto: ");
+        String nome = sc.nextLine();
+
+        for (int i = 0; i < produtos.size(); i++) {
+            if (produtos.get(i).getNome().equalsIgnoreCase(nome)) {
+                produtos.remove(i);
+                System.out.println("Produto removido com sucesso.");
+                return;
+            }
+        }
+        System.out.println("Produto não encontrado.");
+    }
 }
