@@ -7,21 +7,21 @@ public class EstoqueService {
     public static void listarProdutos(ArrayList<Produto> produtos) {
         if (produtos.isEmpty()) {
             System.out.println("Nenhum produto cadastrado...");
-        } else {
-            for (Produto prod : produtos) {
-                prod.mostrarInfo();
-            }
+            return;
+        }
+        for (Produto prod : produtos) {
+            prod.mostrarInfo();
         }
     }
 
     public static void mostrarPrecoFinal(ArrayList<Produto> produtos) {
         if (produtos.isEmpty()) {
             System.out.println("Nenhum produto cadastrado...");
-        } else {
-            for (Produto p : produtos) {
-                if (p instanceof Vendavel v) {
-                    System.out.println("Preço com desconto: R$" + v.calcularPrecoFinal());
-                }
+            return;
+        }
+        for (Produto p : produtos) {
+            if (p instanceof Vendavel v) {
+                System.out.println("Preço com desconto: R$" + v.calcularPrecoFinal());
             }
         }
     }
@@ -29,9 +29,15 @@ public class EstoqueService {
     public static void cadastrarAlimento(Scanner sc, ArrayList<Produto> produtos) {
         System.out.println("Digite o nome do alimento: ");
         String nomeAli = sc.nextLine();
-        System.out.println("Digite o preco do alimento: ");
+        System.out.println("Digite o preço do alimento: ");
         double precoAli = sc.nextDouble();
         sc.nextLine();
+
+        if (precoAli < 0) {
+            System.out.println("Digite um valor válido");
+            return;
+        }
+
         System.out.println("Digite a validade do alimento: ");
         String validade = sc.nextLine();
 
@@ -45,6 +51,13 @@ public class EstoqueService {
         String nomeProd = sc.nextLine();
         System.out.println("Digite o preco do eletronico: ");
         double precoProd = sc.nextDouble();
+        sc.nextLine();
+
+        if (precoProd < 0) {
+            System.out.println("Digite um valor válido!");
+            return;
+        }
+
         System.out.println("Digite a garantia do eletronico: ");
         int garantia = sc.nextInt();
         sc.nextLine();
@@ -66,5 +79,15 @@ public class EstoqueService {
             }
         }
         System.out.println("Produto não encontrado.");
+    }
+
+    public static void menu() {
+        System.out.println("=======SISTEMA DE ESTOQUE INTELIGENTE========");
+        System.out.println("[1] - Cadastrar Alimento");
+        System.out.println("[2] - Cadastrar Eletronico");
+        System.out.println("[3] - Listar Produtos");
+        System.out.println("[4] - Mostrar Preco Final");
+        System.out.println("[5] - Excluir Produto");
+        System.out.println("[6] - Sair");
     }
 }
